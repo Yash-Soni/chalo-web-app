@@ -5,10 +5,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useRoutes } from '../RouteContext';
 
-export default function CardComponent({route, deleteRoute}) {
-  console.log('route in the card: ', route, route.origin, route.destination);
-  
+export default function CardComponent({route}) {
+  const { deleteRoute } = useRoutes()
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent>
@@ -23,6 +24,9 @@ export default function CardComponent({route, deleteRoute}) {
         </Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {route.status} Route
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          {route.direction} Direction
         </Typography>
       </CardContent>
       <CardActions>

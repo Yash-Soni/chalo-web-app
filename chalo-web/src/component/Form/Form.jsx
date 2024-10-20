@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import StopInput from './StopInput'
+import { useRoutes } from '../RouteContext'
 
 const Form = () => {
+  const { routes, addRoute, updateRoute } = useRoutes()
 
   const initialValues = {
     name: '',
@@ -19,14 +21,13 @@ const Form = () => {
 
   useEffect(() => {
     if(routeId) {
-      const routes = JSON.parse(localStorage.getItem('routes'))
       const route = routes.filter(item => item.id?.toString() === routeId?.toString())
       // console.log('route id from params: ', routeId, route[0]);
       if(route) {
         setFormValues(route[0])
       }
     }
-  }, [routeId])  
+  }, [routeId, routes])  
 
   const handleOrigin = (stop) => {
     setFormValues({ ...formValues, origin: stop})
@@ -43,15 +44,12 @@ const Form = () => {
 
   const handleAddRoute = (e) => {
     e.preventDefault()
-    const routes = JSON.parse(localStorage.getItem('routes') || [])
     if(routeId) {
       const updatedRoute = { ...formValues, name: `${formValues.origin.label} - to - ${formValues.destination.label}`}
-      const updatedRoutes = routes.map(route => route.id === routeId ? {...route, updatedRoute} : route)
-      localStorage.setItem('routes', JSON.stringify(updatedRoutes))
+      updateRoute(updatedRoute)
     } else {
       const newRoute = {...formValues, id: new Date().getTime(), name: `${formValues.origin.label} - to - ${formValues.destination.label}`}
-      localStorage.setItem('routes', JSON.stringify([...routes, newRoute]))
-      // console.log('Add routes: ', localStorage.getItem('routes'), newRoute);
+      addRoute(newRoute)
     }
   }  
 
@@ -68,6 +66,7 @@ const Form = () => {
           onChange={handleChange}
           defaultValue=''
         >
+          <option value='select'>Select</option>
           <option value='Up'>Up</option>
           <option value='Down'>Down</option>
         </select>
@@ -79,6 +78,7 @@ const Form = () => {
           onChange={handleChange}
           defaultValue=''
         >
+          <option value='select'>Select</option>
           <option value='Active'>Active</option>
           <option value='Inactive'>Inactive</option>
         </select>
