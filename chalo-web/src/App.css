@@ -17,6 +17,7 @@
 }
 
 .inputs {
+  position: relative;
   width: 40vw;
   margin: 20px;
   padding: 20px;
@@ -29,7 +30,7 @@
 .user-input {
   width: 100%;
   height: 40px;
-  /* margin-top: 10px; */
+  font-size: 28px;
 }
 
 .primary-btn {
@@ -66,4 +67,19 @@
   text-decoration: underline;
   display: flex;
   justify-content: flex-start;
+}
+
+.suggestion-list {
+  position: absolute;
+  list-style: none;
+  width: 90%;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.list-input {
+  padding: 5px;
+  font-size: 20px;
+  border: 1px solid black;
 }

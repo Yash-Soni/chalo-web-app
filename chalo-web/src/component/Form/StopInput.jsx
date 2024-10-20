@@ -25,11 +25,11 @@ const StopInput = ({focus, input, handleInput, inputType}) => {
           value={searchText} 
           onChange={e => setSearchText(e.target.value)} 
         />
-        <ul>
+        <ul className='suggestion-list'>
           {suggestions?.length > 0 && 
             suggestions.map(item => (
-              <li key={item.id} onClick={() => handleClick(item)}>
-                <span>{item.label}</span>
+              <li key={item.id} className='list-input' onClick={() => handleClick(item)}>
+                <span style={{ paddingLeft: '10px'}}>{item.label}</span>
               </li>
             ))
           }

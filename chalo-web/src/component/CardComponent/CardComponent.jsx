@@ -11,7 +11,7 @@ export default function CardComponent({route}) {
   const { deleteRoute } = useRoutes()
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 345, height: 225 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {route.name}

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import StopInput from './StopInput'
 import { useRoutes } from '../RouteContext'
 
 const Form = () => {
   const { routes, addRoute, updateRoute } = useRoutes()
+  const [isLoading, setIsLoading] = useState(true)
+  const navigate = useNavigate()
 
   const initialValues = {
     name: '',
@@ -15,20 +17,25 @@ const Form = () => {
     stops: []
   }
 
-  const [ formValues, setFormValues] = useState(initialValues)
+  const [ formValues, setFormValues ] = useState(initialValues)
   const params = useParams()
   const routeId = params.routeId
 
   useEffect(() => {
+    setIsLoading(true)
     if(routeId) {
       const route = routes.filter(item => item.id?.toString() === routeId?.toString())
-      // console.log('route id from params: ', routeId, route[0]);
+      console.log('route id from params: ', routeId, route[0]);
       if(route) {
         setFormValues(route[0])
+      } else {
+        console.log('No route with id: ', routeId);
+        navigate('/')
       }
     }
-  }, [routeId, routes])  
-
+    setIsLoading(false)
+  }, [routeId, routes, navigate])  
+  
   const handleOrigin = (stop) => {
     setFormValues({ ...formValues, origin: stop})
   }
@@ -52,6 +59,10 @@ const Form = () => {
       addRoute(newRoute)
     }
   }  
+
+  if(isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>

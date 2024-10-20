@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const RouteContext = createContext();
 
@@ -6,6 +7,7 @@ export const useRoutes = () => useContext(RouteContext);
 
 export const RouteProvider = ({ children }) => {
   const [routes, setRoutes] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const storedRoutes = JSON.parse(localStorage.getItem('routes') || '[]');
@@ -25,6 +27,7 @@ export const RouteProvider = ({ children }) => {
     );
     setRoutes(updatedRoutes);
     localStorage.setItem('routes', JSON.stringify(updatedRoutes));
+    navigate('/')
   };
 
   const deleteRoute = (routeID) => {    
