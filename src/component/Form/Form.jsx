@@ -30,7 +30,7 @@ const Form = () => {
         setFormValues(route[0])
       } else {
         console.log('No route with id: ', routeId);
-        navigate('/')
+        navigate('/chalo-web-app')
       }
     }
     setIsLoading(false)

@@ -27,7 +27,7 @@ export const RouteProvider = ({ children }) => {
     );
     setRoutes(updatedRoutes);
     localStorage.setItem('routes', JSON.stringify(updatedRoutes));
-    navigate('/')
+    navigate('/chalo-web-app')
   };
 
   const deleteRoute = (routeID) => {    
