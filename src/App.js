@@ -13,7 +13,7 @@ function App() {
     <RouteProvider>
       <Header />
       <Routes>
-        <Route path='/' element={<LandingPage />} />
+        <Route path='/chalo-web-app' element={<LandingPage />} />
         <Route path='edit/:routeId' element={<Form />} />
         <Route path='routes' element={<AllRoutes />} />
         <Route path='routes/:routeId' element={<ShowRoute />} />
