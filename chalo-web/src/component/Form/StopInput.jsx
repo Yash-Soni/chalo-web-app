@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
 import { autoSuggestion } from '../../helper/utils'
 
-const StopInput = ({focus, handleInput, inputType}) => {
+const StopInput = ({focus, input, handleInput, inputType}) => {
   const [suggestions, setSuggestions] = useState([])
-  const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState(input)
   useEffect(() => {
     setSuggestions(autoSuggestion(searchText))
   }, [searchText])

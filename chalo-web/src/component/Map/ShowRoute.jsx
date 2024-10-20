@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useRef} from 'react'
-import { GoogleMap, useJsApiLoader, LoadScript, Polyline, DirectionsRenderer, Marker } from '@react-google-maps/api'
-import { useParams } from 'react-router-dom'
+import { GoogleMap, useJsApiLoader, DirectionsRenderer, Marker } from '@react-google-maps/api'
+import { useParams, Link } from 'react-router-dom'
 import { STOPS as PotentialStops } from '../../data/stops.js'
 
 // type Libraries = ("places" | "drawing" | "geometry" | "localContext" | "visualization")[]
@@ -19,7 +19,7 @@ const ShowRoute = () => {
   const routeId = params.routeId
   const routes = JSON.parse(localStorage.getItem('routes'))
   
-  const routeData = Array.isArray(routes) ? routes?.filter((route) =>  route.id.toString() === routeId.toString()) : []
+  const routeData = Array.isArray(routes) ? routes?.filter((route) =>  route?.id?.toString() === routeId.toString()) : []
   // console.log('routeData in show routes', routeData, routes?.filter((route) => route.id === routeId), routeId, routes);
   const origin = routeData[0]?.origin
   const destination = routeData[0]?.destination
@@ -186,27 +186,26 @@ const ShowRoute = () => {
           {stopsOnRoute.map((stop, index) => (
             <Marker key={stop.label} position={{ lat: stop.lat, lng: stop.lng}} label={(index+1).toString()} />
           ))}
-          {/* Polyline */}
-          {/* <Polyline 
-            path={path}
-            options={{
-              strokeColor: '#008000',
-              strokeOpacity: 1,
-              strokeWeight: 6,
-              // clickable: false,
-              // draggable: false,
-              // editable: false,
-              geodesic: true
-            }}
-          /> */}
         </GoogleMap>
+        <Link to={`/edit/${routeId}`}>Edit Route</Link>
+        <p>Stops: </p>
         {stopsOnRoute.length > 0 &&
-          stopsOnRoute.map(stop => {
+          stopsOnRoute.map((stop, index) => {
             // console.log('Stops: ', stop);
             
           return(
-          <div>
-            <p>{stop.label}</p>
+          <div style={{paddingLeft: '10px'}}>
+            {index === 0 && 
+              <div>
+                <span><strong>Starting from: {stop.label}</strong></span>
+              </div>
+            }
+            {index === stopsOnRoute.length-1 && 
+              <span><strong>Destination: {stop.label}</strong></span>
+            }
+            {index !== 0 && index !== stopsOnRoute.length-1 && 
+              <p style={{ paddingLeft: '10px'}}>{stop.label}</p>
+            }
           </div>)}
         )}
       {/* </LoadScript> */}

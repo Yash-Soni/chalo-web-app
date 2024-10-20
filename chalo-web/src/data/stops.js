@@ -68,5 +68,33 @@ export const STOPS = [
     value: 'Malwa Mill',
     lat: 22.734186,
     lng: 75.875093
+  },
+  {
+    id: 11,
+    label: 'Bijalpur',
+    value: 'Bijalpur',
+    lat: 22.66562706896698, 
+    lng: 75.8339542972897
+  },
+  {
+    id: 12,
+    label: 'Bhawarkua Square',
+    value: 'Bhawarkua Square',
+    lat: 22.692718089067412, 
+    lng: 75.86755344183594
+  },
+  {
+    id: 13,
+    label: 'Shivaji Vatika',
+    value: 'Shivaji Vatika',
+    lat: 22.711269185504214, 
+    lng: 75.88310443723208
+  },
+  {
+    id: 14,
+    label: 'World Cup Square',
+    value: 'World Cup Square',
+    lat: 22.7058589091277, 
+    lng: 75.9057224187728
   }
 ]
