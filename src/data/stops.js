@@ -96,5 +96,19 @@ export const STOPS = [
     value: 'World Cup Square',
     lat: 22.7058589091277, 
     lng: 75.9057224187728
+  },
+  {
+    id: 15,
+    label: 'Shri Bada Ganapati',
+    value: 'Shri Bada Ganapati',
+    lat: 22.72054054217054,
+    lng: 75.84147066241364
+  },
+  {
+    id: 16,
+    label: 'Geeta Bhavan Square',
+    value: 'Geeta Bhavan Square',
+    lat: 22.71833771262741,
+    lng: 75.88424148574823
   }
 ]
